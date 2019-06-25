@@ -9,7 +9,7 @@ spring:
     name: producer-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false
     username: root
     password: 1234
     type: com.alibaba.druid.pool.DruidDataSource
@@ -20,11 +20,11 @@ spring:
     minIdle: 8
     timeBetweenEvictionRunsMillis: 60000
     minEvictableIdleTimeMillis: 120000
-    validationQuery: select 1
+    validationQuery: SELECT 'x'
     testWhileIdle: false
     testOnBorrow: false
     testOnReturn: false
-    poolPreparedStatements: true
+    poolPreparedStatements: false
     maxOpenPreparedStatements: 100
 mybatis:
   mapper-locations: classpath:mapper/*.xml

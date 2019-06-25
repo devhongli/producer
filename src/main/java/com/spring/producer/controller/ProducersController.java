@@ -23,7 +23,7 @@ public class ProducersController {
     }
 
     @RequestMapping("/queryCustInfo")
-    public CustInfo queryCustInfo(@RequestParam String custNo) {
-        return  csutInfoService.selectByPrimaryKey(custNo);
+    public CustInfo queryCustInfo(@RequestParam String custno) {
+        return  csutInfoService.selectByPrimaryKey(custno);
     }
 }
