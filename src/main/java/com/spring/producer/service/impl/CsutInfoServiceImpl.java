@@ -24,11 +24,12 @@ public class CsutInfoServiceImpl implements CsutInfoService {
     public CustInfo selectByPrimaryKey(String custNo) {
         log.info(custNo + ":Hello World!");
 
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 20; i++) {
             asyncTaskService.executeAsyncTask(i);
         }
-
-        return custInfoMapper.selectByPrimaryKey(Integer.parseInt(custNo));
+        CustInfo custInfo = custInfoMapper.selectByPrimaryKey(Integer.parseInt(custNo));
+        asyncTaskService.executeAsyncTask(9999);
+        return custInfo;
     }
 
     @Override
