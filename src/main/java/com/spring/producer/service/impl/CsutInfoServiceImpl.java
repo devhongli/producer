@@ -1,23 +1,33 @@
 package com.spring.producer.service.impl;
 
+import com.spring.producer.common.AsyncTaskService;
 import com.spring.producer.controller.ProducersController;
 import com.spring.producer.dao.CustInfoMapper;
 import com.spring.producer.entity.CustInfo;
 import com.spring.producer.service.CsutInfoService;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CsutInfoServiceImpl implements CsutInfoService {
+
+    Logger log = LoggerFactory.getLogger(ProducersController.class);
     @Autowired
     public CustInfoMapper custInfoMapper;
 
-    @Async
+    @Autowired
+    private AsyncTaskService asyncTaskService;
+
     @Override
     public CustInfo selectByPrimaryKey(String custNo) {
-        LoggerFactory.getLogger(ProducersController.class).info(custNo + ":Hello World!");
+        log.info(custNo + ":Hello World!");
+
+        for (int i = 0; i < 2000; i++) {
+            asyncTaskService.executeAsyncTask(i);
+        }
+
         return custInfoMapper.selectByPrimaryKey(Integer.parseInt(custNo));
     }
 
